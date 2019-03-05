@@ -1,0 +1,17 @@
+nav{
+    text-align: center;
+    font-size: 26px;
+    background-color: #f2f2f2;
+    width: 30%;
+    margin-inline-start: 35%;
+}
+nav a{
+    color: rgb(61, 61, 61);
+}
+a:hover{
+    background-color: rgb(204, 150, 231);
+    text-decoration: none;
+}
+h2{
+    color: darkorchid;
+}
