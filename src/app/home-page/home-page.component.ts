@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../players/player.service';
 import { iPlayer } from '../players/player';
+import { AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,7 @@ import { iPlayer } from '../players/player';
 })
 export class HomePageComponent implements OnInit {
   private players: iPlayer[] = [];
-  constructor(private playerService:PlayerService) { }
+  constructor(private playerService:PlayerService, private authService:AuthService) { }
 
   ngOnInit() {
     console.log('HttpDemoComponent::ngOnInit()');
@@ -31,4 +32,19 @@ export class HomePageComponent implements OnInit {
     
   }
 
-}
+  public login(){
+    this.authService.login().subscribe(
+      item => {
+        console.log(this.authService.isLoggedIn);
+      }
+    );
+   }
+
+   public logout(){
+    this.authService.logout()
+     console.log(this.authService.isLoggedIn);
+    }
+
+ }
+
+

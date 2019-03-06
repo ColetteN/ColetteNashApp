@@ -12,6 +12,7 @@ import { PlayerService } from './players/player.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import {AuthService} from './auth.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { HomePageComponent } from './home-page/home-page.component';
       InMemoryDataService,{ dataEncapsulation:false}
     )
   ],
-  providers: [PlayerService],
+  providers: [PlayerService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

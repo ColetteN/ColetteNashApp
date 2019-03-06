@@ -8,4 +8,9 @@
           {{ item.parentmobile }} 
         </li>
       </ul>
+<br>
+<br>
+      <button (click)="login()" class="btn btn-dark" >Login</button><span style="padding-left:2%"></span>
+      <button (click)="logout()" class="btn btn-dark" >Logout</button>
+      {{authService.isLoggedIn}}
 </div>
