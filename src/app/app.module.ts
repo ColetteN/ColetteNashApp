@@ -12,7 +12,11 @@ import { PlayerService } from './players/player.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HomePageComponent } from './home-page/home-page.component';
-import {AuthService} from './auth.service';
+import { AuthService } from './auth.service';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,12 +30,15 @@ import {AuthService} from './auth.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase), // Main Angular fire module 
+    AngularFireDatabaseModule  // Firebase database module 
+    
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService,{ dataEncapsulation:false}
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService,{ dataEncapsulation:false}
+    // )
   ],
   providers: [PlayerService, AuthService],
   bootstrap: [AppComponent]
