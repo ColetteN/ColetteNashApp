@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { iPlayer } from '../players/player';
 import { Observable } from 'rxjs';
+//import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Injectable()

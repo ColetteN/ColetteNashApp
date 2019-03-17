@@ -30,15 +30,15 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase), // Main Angular fire module 
-    AngularFireDatabaseModule  // Firebase database module 
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Main Angular fire module 
+    AngularFireDatabaseModule,  // Firebase database module 
     
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService,{ dataEncapsulation:false}
-    // )
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService,{ dataEncapsulation:false}
+    )
   ],
   providers: [PlayerService, AuthService],
   bootstrap: [AppComponent]
