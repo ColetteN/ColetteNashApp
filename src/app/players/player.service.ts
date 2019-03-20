@@ -38,6 +38,10 @@ getAllDocs(){
     return this.http.get<iPlayer[]>(this.webURI);
   }
 
+  getPlayers(){
+    return this.firebaseDB.collection("players").snapshotChanges()
+  }
+
   // public getPlayer(player:iPlayer):Observable<iPlayer>
   //Get one player only
   // {

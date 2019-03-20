@@ -18,7 +18,7 @@ export class PlayerListComponent implements OnInit {
   public editing = false;
 //empty array of players
 //local array 
-  private players: iPlayer[] = [];
+  private players= [];
 
   constructor(private playerService:PlayerService) { }
 
@@ -26,19 +26,15 @@ export class PlayerListComponent implements OnInit {
     console.log('HttpDemoComponent::ngOnInit()');
     console.log("Before getting data from database");
     console.log(this.players);
-    this.playerService.getPlayers().subscribe(
-      //returns an observable obj that u can subscribe to
-      //subscribing to the db putting data from server into
-      //the above players[] array
-      data => {
-        console.log("The data from database");
-        console.log(data);
-        //from the db server
-        this.players = data;
-        console.log("After getting data from database");
-        console.log(this.players);
-      }
-    );
+    this.playerService.getPlayers().subscribe(doc => {
+      this.players =  doc.map(object =>{
+        return {
+          id:  object.payload.doc.id,
+          ...object.payload.doc.data()
+        };
+      });    
+      console.log(this.players)
+    });
     
   }
 
