@@ -15,7 +15,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AuthService } from './auth.service';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // Main Angular fire module 
-    AngularFireDatabaseModule,  // Firebase database module 
+    AngularFirestoreModule,  // Firebase database module 
     
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

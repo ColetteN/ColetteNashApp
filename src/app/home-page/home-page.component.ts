@@ -32,6 +32,19 @@ export class HomePageComponent implements OnInit {
     
   }
 
+//Testing DB
+getAllDocuments(){
+  this.playerService.getAllDocs().subscribe(item =>{
+    console.log(item[0]);
+    console.log(item[0].payload);
+    console.log(item[0].payload.doc);
+    console.log(item[0].payload.doc.id);
+    console.log(item[0].payload.doc.data());
+  });
+}
+
+
+
   public login(){
     this.authService.login().subscribe(
       item => {

@@ -42,27 +42,18 @@ export class PlayerListComponent implements OnInit {
     
   }
 
-  public addNewItem(
-    idVal: number,
-    playernameVal: string, 
-    dobVal: string, 
-    parentnameVal: string, 
-    parentmobileVal:string) {
+  public addNewItem(idVal: number,playernameVal: string, dobVal: string, parentnameVal: string, parentmobileVal:string) {
     // Create an iPlayer object. Set the id to 0 as this will be set on
     // the server to a correct value
     let player:iPlayer = {
-      id: idVal = null, 
       playername: playernameVal, 
       dob: dobVal, 
       parentname:parentnameVal, 
       parentmobile:parentmobileVal
-    };
+      };
 
     // //adds player to the db
-      this.playerService.addPlayer(player).subscribe(   
-        newItem => { 
-          this.players.push(newItem); }
-     );
+      this.playerService.addPlayer(player);
     // the above does the same as this........
     // this.playerService.addPlayer(player);
     // this.players.push(player);

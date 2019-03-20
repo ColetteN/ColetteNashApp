@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { iPlayer } from '../players/player';
 import { Observable } from 'rxjs';
-//import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-
+/////////////Player and Database Service///////////////////////////////
 @Injectable()
 export class PlayerService {
 
@@ -15,13 +15,23 @@ export class PlayerService {
     headers:new HttpHeaders({'Content-Type':'application/json'})
   };
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private firebaseDB:AngularFirestore) { 
     console.log('HttpDemoService::constructor()');
   }
 
+
+  /////////////////Functions////////////////////////////////
+
+//test DB
+
+getAllDocs(){
+  return this.firebaseDB.collection("players").snapshotChanges();
+}
+
+
   //HTTP GET to get many player items
   // : returns an observerable array of iPlayers
-  public getPlayers():Observable<iPlayer[]>
+  public getPlayersOld():Observable<iPlayer[]>
   //send data down from server 
   {
     //the array of iPlayers
@@ -37,8 +47,12 @@ export class PlayerService {
   // }
 
   // HTTP POST to add a player
-  public addPlayer(player: iPlayer): Observable<iPlayer> {
+  public addPlayerOld(player: iPlayer): Observable<iPlayer> {
     return this.http.post<iPlayer>(this.webURI, player, this.httpOptions);
+  }
+
+  public addPlayer(player){
+    return this.firebaseDB.collection("players").add(player);
   }
 
   // HTTP DELETE to delete a player
