@@ -18,19 +18,21 @@ export class PlayerListComponent implements OnInit {
   public editing = false;
 //empty array of players
 //local array 
-  private players= [];
+  private players = [];
 
   constructor(private playerService:PlayerService) { }
 
   ngOnInit() {
-    console.log('HttpDemoComponent::ngOnInit()');
-    console.log("Before getting data from database");
-    console.log(this.players);
-    this.playerService.getPlayers().subscribe(doc => {
-      this.players =  doc.map(object =>{
+    //getPlayers() returns an observable array of firebase documents(object)
+    this.playerService.getPlayers()
+    //subscribing to the document, 
+      .subscribe(docs => {
+      //maps the document based on the below and puts into the players array
+      this.players =  docs.map(item => {
+        //for each item, maps that item to the local array
         return {
-          id:  object.payload.doc.id,
-          ...object.payload.doc.data()
+          id:  item.payload.doc.id,
+          ...item.payload.doc.data()
         };
       });    
       console.log(this.players)
@@ -50,30 +52,14 @@ export class PlayerListComponent implements OnInit {
 
     // //adds player to the db
       this.playerService.addPlayer(player);
-    // the above does the same as this........
-    // this.playerService.addPlayer(player);
-    // this.players.push(player);
+
 
     this.clearForm();
   } 
 
-  public deleteItem(itemToDelete: iPlayer) {
-    // I have to assign something to this.todos as this is what triggers angular to refresh
-    // the components template
-
-    //delete from the db mock server here
-    this.playerService.deletePlayer(itemToDelete).subscribe(
-      delItem => { 
-        this.players.splice(
-          //find the index of the item we want to delete by matching their ids 
-          this.players.findIndex(player => player.id === itemToDelete.id),1
-        ); 
-      }
-    );
-    // the above does the same as this........
-    //this.playerService.deletePlayer(itemToDelete)
-    //.subscribe( variableName => { }
-    //this.players.splice(this.players.findIndex(player => player.id === itemToDelete.id),1)
+  public deleteItem(itemToDelete) {
+    //calling the delete function in the playerService
+    this.playerService.deletePlayer(itemToDelete.id)
    }
 
    public editItem(itemToEdit: iPlayer){
@@ -86,38 +72,18 @@ export class PlayerListComponent implements OnInit {
     this.editing = true;
    }
 
-   public updateItem(
-    idVal: number,
-    playernameVal: string, 
-    dobVal: string, 
-    parentnameVal: string, 
-    parentmobileVal:string) {
+   public updateItem(idVal: number,playernameVal: string, dobVal: string, parentnameVal: string, parentmobileVal:string) {
     // Create an iPlayer object. Set the id to 0 as this will be set on
     // the server to a correct value
     let player:iPlayer = {
-      id: idVal, 
       playername: playernameVal, 
       dob: dobVal, 
       parentname:parentnameVal, 
       parentmobile:parentmobileVal
     };
-    // get the player service and the function we need to work with 
-    //from this ie. the update function
-
-    //Find the index of the player we want to update using the players id
-    var playerIndex = this.players.findIndex(item => item.id === player.id)
-
-    //Updates the local players array with the new data added in from the form
-    this.players[playerIndex] = player
-
-    //Get the <Player> object that we want to update on the database and stored in var
-    var playerToUpdate = this.players[playerIndex];
-
-    //passes the <Player> var from above into the updatePlayer function on the player.service.ts
-    //the player.service.ts then handles the updating
-    this.playerService.updatePlayer(playerToUpdate).subscribe(item => { 
-      console.log(item);
-    })
+   
+    //calling the updatePlayer function
+    this.playerService.updatePlayer(idVal, player)
 
     this.editing = false;
     this.clearForm();

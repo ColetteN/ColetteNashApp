@@ -13,9 +13,6 @@ export class HomePageComponent implements OnInit {
   constructor(private playerService:PlayerService, private authService:AuthService) { }
 
   ngOnInit() {
-    console.log('HttpDemoComponent::ngOnInit()');
-    console.log("Before getting data from database");
-    console.log(this.players);
     this.playerService.getPlayers().subscribe(doc => {
       this.players =  doc.map(object =>{
         return {
@@ -28,15 +25,15 @@ export class HomePageComponent implements OnInit {
   }
 
 //Testing DB
-getAllDocuments(){
-  this.playerService.getAllDocs().subscribe(item =>{
-    //console.log(item[0]);
-    //console.log(item[0].payload);
-    console.log(item[0].payload.doc);
-    console.log(item[0].payload.doc.id);
-    console.log(item[0].payload.doc.data());
-  });
-}
+// getAllDocuments(){
+//   this.playerService.getAllDocs().subscribe(item =>{
+//     //console.log(item[0]);
+//     //console.log(item[0].payload);
+//     console.log(item[0].payload.doc);
+//     console.log(item[0].payload.doc.id);
+//     console.log(item[0].payload.doc.data());
+//   });
+// }
 
 
 
