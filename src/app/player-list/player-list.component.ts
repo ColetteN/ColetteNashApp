@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.css']
 })
-export class PlayerListComponent implements OnInit {
+export class  PlayerListComponent implements OnInit {
   id = new FormControl ('');
   name = new FormControl ('');
   dob = new FormControl ('');
@@ -59,7 +59,7 @@ export class PlayerListComponent implements OnInit {
 
   public deleteItem(itemToDelete) {
     //calling the delete function in the playerService
-    this.playerService.deletePlayer(itemToDelete.id)
+    this.playerService.deletePlayer(itemToDelete.id);
    }
 
    public editItem(itemToEdit: iPlayer){

@@ -10,6 +10,7 @@ import { AuthService} from '../auth.service';
 })
 export class HomePageComponent implements OnInit {
   private players = [];
+  
   constructor(private playerService:PlayerService, private authService:AuthService) { }
 
   ngOnInit() {

@@ -1,54 +1,74 @@
-<div class="side">
-    <ul>
-        <li *ngFor="let item of players"> 
-          {{ item.playername }}
-          {{ item.dob }} 
-          {{ item.parentname }} 
-          {{ item.parentmobile }} 
-          <br/>
-          <button (click)="deleteItem(item)" class="btn btn-danger"> DELETE</button><span style="padding-left:5%"></span>
-          <button (click)="editItem(item)" class="btn btn-info"> EDIT</button>
-        </li><br>
-      </ul>
-</div>
+<!-- <div class="side"> -->
 
-<div class="container">
-    <div class="form-group">
-      <h4>Add new players here</h4>
-        <input type="text" [formControl]="id" hidden/><br>
-        {{id.value}}
-      <label>Name:</label>
-        <input type="text" [formControl]="name" /><br>
-      
-      <label>DOB:</label>
-        <input type="text" [formControl]="dob" /><br>
-      
-      <label>Parents Name:</label>
-        <input type="text" [formControl]="parentname" /><br>
-      
-      <label>Parents Mobile:</label>
-        <input type="text" [formControl]="parentmobile" /><br>   
-    </div>
-  
-    <div *ngIf="!editing" class="form-group">
-      <button (click)="addNewItem(id.value, name.value, dob.value, parentname.value, parentmobile.value)" class="btn btn-dark">Add to List</button>
-    </div>
-    <div *ngIf="editing" class="form-group">
-      <button (click)="updateItem(id.value, name.value, dob.value, parentname.value, parentmobile.value)" class="btn btn-dark">Update item List</button>
-    </div>
-    <div class="form-group">
-      <button (click)="clearForm()" class="btn btn-dark">Clear Form</button>
-    </div>
+    <div class="container">
+        <div class= "row">
+
+
+          <div class="col-sm-4">
+            <ul>
+                <li *ngFor="let item of players"> 
+                  {{ item.playername }}
+                  {{ item.dob }} 
+                  {{ item.parentname }} 
+                  {{ item.parentmobile }} 
+                  <br/>
+                  <button (click)="deleteItem(item)" type= "button" class="btn btn-danger"> DELETE</button>
+                  <span style="padding-left:5%"></span>
+                  <button (click)="editItem(item)" type= "button" class="btn btn-info"> EDIT</button>
+                </li><br>
+              </ul>
+            </div>
+
+
+<!-- <div class="container"> -->
+          <div class="col-sm-4">
+
+            <div class="form-group">
+              <h4>Add new players here</h4>
+                <input type="text" [formControl]="id" hidden/><br>
+                {{id.value}}
+                  <label>Name:</label>
+                    <input type="text" [formControl]="name" /><br>
+              
+                  <label>DOB:</label>
+                    <input type="text" [formControl]="dob" /><br>
+                
+              
+                  <label>Parents Name:</label>
+                    <input type="text" [formControl]="parentname" /><br>
+              
+                  <label>Parents Mobile:</label>
+                    <input type="text" [formControl]="parentmobile" /><br>   
+              </div>
+          
+              <div *ngIf="!editing" class="form-group">
+                <button (click)="addNewItem(id.value, name.value, dob.value, parentname.value, parentmobile.value)" class="btn btn-dark">Add to List</button>
+              </div>
+
+              <div *ngIf="editing" class="form-group">
+                <button (click)="updateItem(id.value, name.value, dob.value, parentname.value, parentmobile.value)" class="btn btn-dark">Update item List</button>
+              </div>
+
+              <div class="form-group">
+                <button (click)="clearForm()" class="btn btn-dark">Clear Form</button>
+              </div>
+
+            </div>
+
+    <!-- <div class="aside"> -->
+
+
+              <div class="col-sm-4">
+                <h4>Show the updated values</h4>
+                  <!-- <p>Id: {{ id.value }}</p> -->
+                  <p>Name: {{ name.value }}</p>
+                  <p>DOB: {{ dob.value }}</p>
+                  <p>Parents Name: {{ parentname.value }}</p>
+                  <p>Parents Mobile: {{ parentmobile.value }}</p>
+                </div>
+
   </div>
-
-    <div class="aside">
-        <h4>Show the updated values</h4>
-          <p>Id: {{ id.value }}</p>
-          <p>Name: {{ name.value }}</p>
-          <p>DOB: {{ dob.value }}</p>
-          <p>Parents Name: {{ parentname.value }}</p>
-          <p>Parents Mobile: {{ parentmobile.value }}</p>
-    </div>
+</div>
   
 
 
